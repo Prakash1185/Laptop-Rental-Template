@@ -16,10 +16,12 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         <div className="">
           <div className="flex gap-3 md:gap-5">
-            <div className="w-10 h-8 md:w-12 md:h-10 bg-primary shrink-0"></div>
+            <div className="w-10 h-8 md:w-12 md:h-10 flex justify-center items-center bg-primary shrink-0">
+              <span className="text-white text-2xl font-semibold">LR</span>
+            </div>
             <div className="italic text-xs md:text-sm">
               <p>Get your dream laptop on rent at ease</p>
-              <p className="hidden sm:block">
+              <p className="block tracking-tight sm:tracking-normal">
                 Best prices, flexible plans, and doorstep delivery
               </p>
             </div>
@@ -30,7 +32,7 @@ const Navbar = () => {
         <div className="hidden lg:flex space-x-3">
           <Link
             href={"/"}
-            className="uppercase px-5 flex items-center hover:bg-accent hover:text-white rounded-full transition-all border-2 duration-300 cursor-pointer hover:border-accent"
+            className="uppercase px-5 flex items-center bg-accent text-white rounded-full transition-all border-2 duration-300 cursor-pointer border-accent"
           >
             Home
           </Link>
@@ -96,7 +98,7 @@ const Navbar = () => {
         <div className="flex flex-col space-y-2 py-2">
           <Link
             href={"/"}
-            className="uppercase px-5 py-2 hover:bg-accent hover:text-white rounded-full transition-all border-2 duration-300 cursor-pointer hover:border-accent text-center"
+            className="uppercase px-5 py-2 bg-accent text-white rounded-full transition-all border-2 duration-300 cursor-pointer border-accent text-center"
             onClick={() => setIsMenuOpen(false)}
           >
             Home
