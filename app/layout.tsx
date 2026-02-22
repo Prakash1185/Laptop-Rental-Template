@@ -9,6 +9,7 @@ import {
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SmoothScroll from "@/components/smooth-scroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,9 +51,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${googleSans.variable} ${googleSansFlex.variable} font-google-sans-flex antialiased px-2 md:px-4 lg:px-6 py-2`}
       >
-        <Navbar />
-        {children}
-        <Footer/>
+        <SmoothScroll>
+          <Navbar />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

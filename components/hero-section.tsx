@@ -1,12 +1,73 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { motion } from "framer-motion";
 
+// 1. The container coordinates the stagger timing
+const containerVariants = {
+  hidden: { opacity: 1 }, // Note: Container itself doesn't fade, the masks handle visibility
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, // Stagger speed between words
+      delayChildren: 0.2,   // Wait a moment for background to start scaling
+    },
+  },
+};
+
+// 2. The Curtain Pull-up Effect
+const wordVariants = {
+  // Start pushed down exactly its own height, hidden by the parent's overflow mask
+  hidden: { y: "100%", rotateZ: 5 }, // Added a tiny 5-degree rotation for that exact agency "swing" up
+  show: {
+    y: "0%",
+    rotateZ: 0,
+    transition: {
+      type: "spring",
+      stiffness: 60,
+      damping: 14,
+      mass: 1,
+    },
+  },
+};
+
+// 3. The AnimatedText Helper (Now creates individual line-masks for each word!)
+const AnimatedText = ({ text, className }: { text: string; className?: string }) => {
+  return (
+    <span className={className}>
+      {text.split(" ").map((word, idx, arr) => (
+        <React.Fragment key={idx}>
+          {/* This outer span acts as the "window" or "mask" */}
+          <span className="inline-block overflow-hidden pb-1 -mb-1"> 
+            <motion.span 
+              variants={wordVariants} 
+              // inline-block is required so transforms apply correctly
+              className="inline-block origin-top-left" 
+            >
+              {word}
+            </motion.span>
+          </span>
+          {/* Preserves normal space between words */}
+          {idx < arr.length - 1 && " "}
+        </React.Fragment>
+      ))}
+    </span>
+  );
+};
+
+// Main Component
 const HeroSection = () => {
   return (
     <section className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-xl overflow-hidden mt-4 sm:mt-8">
-      {/* Background Image */}
-      <div className="absolute inset-0">
+      
+      {/* Background Cinematic Zoom */}
+      <motion.div 
+        initial={{ scale: 1.15 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }} 
+        className="absolute inset-0 z-0"
+      >
         <Image
           src="/hero4.jpg"
           alt="Laptop rental service"
@@ -14,59 +75,33 @@ const HeroSection = () => {
           className="object-cover"
           priority
         />
-        {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/30"></div>
-      </div>
+      </motion.div>
 
-      {/* Content */}
-      <div className="relative h-full flex flex-col justify-end px-4 sm:px-6 md:px-10">
+      {/* Content Container (Wraps the text components to trigger stagger) */}
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="relative h-full flex flex-col justify-end px-4 sm:px-6 md:px-10 z-10"
+      >
         {/* Subtitle */}
         <p className="text-white/90 text-xs sm:text-sm md:text-base mb-1 sm:mb-2 font-light">
-          Affordable, flexible, and convenient—
+          <AnimatedText text="Affordable, flexible, and convenient—" />
           <br className="hidden sm:block" />
-          powered by quality devices and trusted by professionals.
+          <AnimatedText text="powered by quality devices and trusted by professionals." />
         </p>
 
         {/* Main Heading */}
         <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light max-w-5xl mb-8 sm:mb-10 md:mb-12">
-          Instant Laptop
+          <AnimatedText text="Instant Laptop" />
           <br />
-          Rental Service
+          <AnimatedText text="Rental Service" />
           <br />
-          <span className="">Using Smart Solutions</span>
+          <AnimatedText className="" text="Using Smart Solutions" />
         </h1>
-      </div>
-
-      {/* Side Card */}
-      <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-6 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 bg-secondary rounded-xl px-3 sm:px-4 md:px-6 py-2 sm:py-3 items-center gap-3 sm:gap-4 max-w-95 md:max-w-xl hidden">
-        {/* Text Content */}
-        <div className="flex-1 space-y-3 sm:space-y-5">
-          <div>
-            <div className="text-3xl sm:text-4xl md:text-5xl font-medium text-gray-800 mb-1">
-              50<span className="text-accent">+</span>
-            </div>
-            <p className="text-gray-600 text-xs sm:text-sm md:text-base tracking-tight">
-              Happy Customers
-            </p>
-          </div>
-          <Link
-            href="/contact"
-            className="mt-2 sm:mt-3 inline-block bg-accent hover:bg-accent/90 text-white text-xs md:text-sm px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-full transition-all duration-300"
-          >
-            RENT NOW
-          </Link>
-        </div>
-
-        {/* Image */}
-        <div className="relative w-20 h-28 sm:w-24 sm:h-36 md:w-24 md:h-36 shrink-0">
-          <Image
-            src="/person.jpg"
-            alt="Customer service representative"
-            fill
-            className="object-cover rounded-xl"
-          />
-        </div>
-      </div>
+      </motion.div>
+      
     </section>
   );
 };
