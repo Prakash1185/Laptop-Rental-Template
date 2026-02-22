@@ -2,9 +2,9 @@ import React from "react";
 
 const Steps = () => {
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-16 font-sans">
+    <div className="w-full max-w-6xl mx-auto  py-16 font-sans">
       {/* Heading */}
-      <div className="text-center mb-12 md:mb-16">
+      <div className="text-center mb-12 md:mb-16 px-3">
         <h2 className="text-4xl md:text-[2.75rem] text-gray-900 leading-[1.2] tracking-tight">
           Your Smart Laptop Rental <br />
           Journey in Three Steps

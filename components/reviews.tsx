@@ -2,7 +2,7 @@ import React from 'react';
 
 const Reviews = () => {
   return (
-    <div className="w-full  px-4 py-16 font-google-sans">
+    <div className="w-full py-16 font-google-sans">
       
       {/* Main Split Container */}
       <div className="flex flex-col md:flex-row w-full rounded-[2rem] overflow-hidden shadow-lg">

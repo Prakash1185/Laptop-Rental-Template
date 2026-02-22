@@ -24,7 +24,7 @@ const wordVariants = {
     y: "0%",
     rotateZ: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 60,
       damping: 14,
       mass: 1,
