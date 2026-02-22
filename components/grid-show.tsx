@@ -2,7 +2,7 @@ import React from 'react';
 
 const GridShow = () => {
   return (
-    <div className="w-full px-4 py-16 font-google-sans max-w-7xl mx-auto">
+    <div className="w-full px-4 py-16 font-google-sans ">
       
       {/* Top Hero Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-12 sm:mb-16">

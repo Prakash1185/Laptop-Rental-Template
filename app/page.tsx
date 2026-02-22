@@ -2,6 +2,7 @@ import Features from "@/components/features";
 import GridShow from "@/components/grid-show";
 import HeroSection from "@/components/hero-section";
 import MissionSection from "@/components/mission";
+import Reviews from "@/components/reviews";
 import ServicesSection from "@/components/services";
 import Steps from "@/components/steps";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <Features/>
       <Steps/>
       <GridShow/>
+      <Reviews/>
     </div>
   )
 }
