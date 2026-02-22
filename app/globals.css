@@ -10,6 +10,8 @@
   --font-sans: var(--font-inter);
   --font-geist-sans: var(--font-geist-sans);
   --font-inter: var(--font-inter);
+  --font-google-sans: var(--font-google-sans);
+  --font-google-sans-flex: var(--font-google-sans-flex);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -107,6 +109,12 @@
 
 .font-inter {
   font-family: "Inter", sans-serif;
+}
+.font-google-sans {
+  font-family: "Goole Sans", sans-serif;
+}
+.font-google-sans-flex {
+  font-family: "Goole Sans Flex", sans-serif;
 }
 
 @layer utilities {
