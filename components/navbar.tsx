@@ -61,7 +61,7 @@ const Navbar = () => {
             <div className="italic text-xs md:text-sm">
               <p>Get your dream laptop on rent at ease</p>
               <p className="block tracking-tight sm:tracking-normal">
-                Best prices, flexible plans, and instant delivery
+                Best prices, flexible plans, and doorstep delivery
               </p>
             </div>
           </div>
